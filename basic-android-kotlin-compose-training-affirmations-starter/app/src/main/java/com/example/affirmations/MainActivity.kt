@@ -20,6 +20,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.calculateEndPadding
@@ -32,6 +33,8 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.ui.unit.dp
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -42,6 +45,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.affirmations.model.Affirmation
 import com.example.affirmations.ui.theme.AffirmationsTheme
@@ -87,11 +91,11 @@ fun AffirmationsApp() {
     }
 }
 
-// Composable that renders a single affirmation as a card with an image and text
+// Composable that renders a single affirmation as a card with an image, text, and a button
 @Composable
 fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
     Card(modifier = modifier) { // Use Material Design Card to wrap the content
-        Column { // Stack the image and text vertically
+        Column { // Stack the image and text/button row vertically
             // Display the affirmation's image
             Image(
                 painter = painterResource(affirmation.imageResourceId), // Load image from resources
@@ -101,12 +105,35 @@ fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
                     .height(194.dp), // Fixed height for consistent card appearance
                 contentScale = ContentScale.Crop // Crop the image to fit the dimensions
             )
-            // Display the affirmation's text below the image
-            Text(
-                text = LocalContext.current.getString(affirmation.stringResourceId), // Fetch text from string resources
-                modifier = Modifier.padding(16.dp), // Add padding around the text
-                style = MaterialTheme.typography.headlineSmall // Apply a predefined typography style
-            )
+            // Row to place text and button side by side with an 80:20 width ratio
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth() // Ensure the row spans the card's width
+                    .padding(16.dp) // Add padding around the row
+            ) {
+                // Text takes 80% of the available width
+                Text(
+                    text = LocalContext.current.getString(affirmation.stringResourceId), // Fetch text from string resources
+                    modifier = Modifier
+                        .weight(0.8f), // Allocate 80% of the width to the text
+                    style = MaterialTheme.typography.headlineSmall, // Apply predefined typography style
+                )
+                // Button takes 20% of the available width with improved styling
+                Button(
+                    onClick = { /* Add button action here, e.g., log or navigate */ }, // Define button behavior
+                    modifier = Modifier
+                        .weight(0.2f) // Allocate 20% of the width to the button
+                        .padding(start = 6.dp) // Add spacing between text and button
+                        .height(36.dp), // Set a fixed height for better proportion
+                    contentPadding = ButtonDefaults.ButtonWithIconContentPadding // Adjust padding for compactness
+                ) {
+                    Text(
+                        text = "More", // Button label
+                        style = MaterialTheme.typography.labelSmall, // Use smaller typography for better fit
+                        maxLines = 1 // Restrict to single-line text
+                    )
+                }
+            }
         }
     }
 }
