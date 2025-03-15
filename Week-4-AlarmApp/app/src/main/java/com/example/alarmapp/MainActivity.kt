@@ -21,18 +21,25 @@ class MainActivity : ComponentActivity() {
         setContentView(R.layout.activity_main)
 
         // Init UI components
-        timePicker = findViewById<TimePicker>(R.id.timePicker)
-        setAlarmButton = findViewById<Button>(R.id.setAlarmButton)
-        alarmTimeTextView = findViewById<TextView>(R.id.alarmTimeTextView)
+        timePicker = findViewById(R.id.timePicker)
+        setAlarmButton = findViewById(R.id.setAlarmButton)
+        alarmTimeTextView = findViewById(R.id.alarmTimeTextView)
 
         // Set 24-hour format
         timePicker.setIs24HourView(true)
 
-        // Setup btn click listener
+        // Update the text when the user selects a new time
+        timePicker.setOnTimeChangedListener { _, hourOfDay, minute ->
+            val timeString = String.format("%02d:%02d", hourOfDay, minute)
+            alarmTimeTextView.text = "Selected time: $timeString"
+        }
+
+        // Setup button click listener
         setAlarmButton.setOnClickListener {
             setAlarm()
         }
     }
+
 
     private fun setAlarm() {
         // Get selected time from TimePicker
