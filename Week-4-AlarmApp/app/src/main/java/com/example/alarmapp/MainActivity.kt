@@ -58,7 +58,7 @@ class MainActivity : ComponentActivity() {
             putExtra(AlarmClock.EXTRA_MESSAGE, "Wake up for class!")
             // True: create the alarm without showing UI
             // False: create alarm and show alarm app
-             putExtra(AlarmClock.EXTRA_SKIP_UI, false)
+             putExtra(AlarmClock.EXTRA_SKIP_UI, true)
         }
 
         try {
