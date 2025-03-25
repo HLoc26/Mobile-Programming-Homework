@@ -6,7 +6,7 @@ import org.junit.Assert.*
 import org.hamcrest.Matchers.`is`
 
 class StatisticsUtilsTest {
-
+    // Task 2
     @Test
     fun getActiveAndCompletedStats_noCompleted_returnsHundredZero() {
         val tasks = listOf(
@@ -19,7 +19,7 @@ class StatisticsUtilsTest {
         assertThat(result.activeTasksPercent, `is`(100f))
         assertThat(result.completedTasksPercent, `is`(0f))
     }
-
+    // Task 3
     @Test
     fun getActiveAndCompletedStats_noActive_returnsZeroHundred() {
         val tasks = listOf(

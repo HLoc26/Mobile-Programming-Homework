@@ -16,6 +16,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
 
+// Task 6
 @Config(sdk = [30]) // Remove when Robolectric supports SDK 31
 @RunWith(AndroidJUnit4::class)
 class TasksViewModelTest {
@@ -31,6 +32,7 @@ class TasksViewModelTest {
         tasksViewModel = TasksViewModel(ApplicationProvider.getApplicationContext())
     }
 
+    // Task 4
     @Test
     fun addNewTask_setsNewTaskEvent(){
 
@@ -38,6 +40,7 @@ class TasksViewModelTest {
         tasksViewModel.addNewTask()
 
         // Then the new task event is triggered
+        // Task 5
         val value = tasksViewModel.newTaskEvent.getOrAwaitValue()
         assertThat(value.getContentIfNotHandled(), (not(nullValue())))
     }

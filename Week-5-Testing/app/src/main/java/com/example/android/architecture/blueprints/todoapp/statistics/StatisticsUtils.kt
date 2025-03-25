@@ -32,6 +32,7 @@ internal fun getActiveAndCompletedStats(tasks: List<Task>?): StatsResult {
 }
 */
 
+// Task 3
 // New function that handle the case if tasks parameter is null or is empty
 internal fun getActiveAndCompletedStats(tasks: List<Task>?): StatsResult {
 
