@@ -104,54 +104,40 @@ fun AddTaskScreen(viewModel: TaskViewModel, navController: NavController) {
                         modifier = Modifier.padding(bottom = 12.dp)
                     )
 
+                    // Start Date Section
                     Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 8.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(bottom = 4.dp).fillMaxWidth()
                     ) {
                         Icon(
                             imageVector = Icons.Default.DateRange,
                             contentDescription = null,
-                            modifier = Modifier.padding(end = 12.dp)
+                            modifier = Modifier.padding(end = 8.dp)
                         )
-                        Column {
-                            Text(
-                                text = "Start Date",
-                                style = MaterialTheme.typography.bodyMedium
-                            )
-                            DateSelector(
-                                label = "",
-                                selectedDate = startDate,
-                                onDateSelected = { startDate = it }
-                            )
-                        }
+                        DateSelector(
+                            label = "Start Date",
+                            selectedDate = startDate,
+                            onDateSelected = { startDate = it }
+                        )
                     }
 
                     HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
 
+                    // Due Date Section
                     Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 8.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(bottom = 4.dp).fillMaxWidth()
                     ) {
                         Icon(
                             imageVector = Icons.Default.DateRange,
                             contentDescription = null,
-                            modifier = Modifier.padding(end = 12.dp)
+                            modifier = Modifier.padding(end = 8.dp)
                         )
-                        Column {
-                            Text(
-                                text = "Due Date",
-                                style = MaterialTheme.typography.bodyMedium
-                            )
-                            DateSelector(
-                                label = "",
-                                selectedDate = dueDate,
-                                onDateSelected = { dueDate = it }
-                            )
-                        }
+                        DateSelector(
+                            label = "Due Date",
+                            selectedDate = dueDate,
+                            onDateSelected = { dueDate = it }
+                        )
                     }
                 }
             }
